@@ -1,0 +1,51 @@
+{
+  "name": "boss-browser",
+  "version": "1.0.0",
+  "description": "BOSS BROWSER — Next-Generation Futuristic Desktop Browser",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build:vite": "vite build",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "build": "npm run build:vite && npm run build:electron",
+    "start": "cross-env ELECTRON_RUN_AS_NODE= electron .",
+    "package": "npm run build && electron-builder --win",
+    "preview": "vite preview --port 5173"
+  },
+  "keywords": [
+    "browser",
+    "boss-browser",
+    "electron",
+    "futuristic",
+    "threejs"
+  ],
+  "author": "BOSS Systems",
+  "license": "MIT",
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.181.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.1",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.181.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^24.15.0",
+    "electron-builder": "^26.4.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5",
+    "wait-on": "^9.0.4"
+  }
+}
