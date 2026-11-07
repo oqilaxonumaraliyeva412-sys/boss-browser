@@ -13,7 +13,10 @@ import {
   WifiOff,
   ExternalLink,
   Shield,
-  Layers
+  Layers,
+  Sparkles,
+  Info,
+  Laptop
 } from 'lucide-react';
 
 interface TabViewProps {
@@ -119,43 +122,8 @@ const TabView: React.FC<TabViewProps> = ({ tab, isActive }) => {
 
   // Render External Web Content
   return (
-    <div className="relative w-full h-full bg-[#08090C] overflow-hidden">
-      {/* Network / Navigation Error Screen */}
-      {loadError && (
-        <div className="absolute inset-0 z-20 bg-[#08090C] flex flex-col items-center justify-center p-6 text-center select-none">
-          <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(239,68,68,0.2)]">
-            <WifiOff className="w-8 h-8 text-red-400" />
-          </div>
-          <h2 className="font-orbitron font-bold text-xl text-white mb-2">
-            Unable to Reach Site
-          </h2>
-          <p className="text-xs text-gray-400 max-w-md mb-2 font-mono">
-            {tab.url}
-          </p>
-          <p className="text-xs text-red-400 max-w-md mb-6">
-            Error {loadError.code}: {loadError.desc || 'Check internet connection and domain resolution.'}
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={() => {
-                setLoadError(null);
-                webviewRef.current?.reload();
-              }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-accent text-white text-xs font-semibold hover:brightness-110 shadow-lg shadow-purple-500/20"
-            >
-              <RotateCw className="w-3.5 h-3.5" /> Retry
-            </button>
-            <button
-              onClick={() => navigateActiveTab('boss://newtab')}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.08] hover:bg-white/15 text-gray-300 text-xs font-semibold"
-            >
-              <Home className="w-3.5 h-3.5" /> Return Home
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Real Electron Webview or Cloud Web Fallback */}
+    <div className="relative w-full h-full bg-[#08090C] overflow-hidden flex flex-col">
+      {/* Real Electron Webview */}
       {isElectron ? (
         <webview
           ref={webviewRef}
@@ -166,22 +134,35 @@ const TabView: React.FC<TabViewProps> = ({ tab, isActive }) => {
           webpreferences="contextIsolation=yes, nodeIntegration=no, nativeWindowOpen=yes"
         />
       ) : (
-        <div className="relative w-full h-full flex flex-col">
-          {/* Cloud Web Mode Notice Bar */}
-          <div className="flex items-center justify-between px-4 py-1.5 bg-[#101420] border-b border-white/10 text-xs text-gray-300">
+        /* Cloud Web Sandbox Mode with explanation banner & direct actions */
+        <div className="relative w-full h-full flex flex-col bg-[#0A0D15]">
+          <div className="flex items-center justify-between px-4 py-2 bg-[#121624] border-b border-white/10 text-xs text-gray-300">
             <div className="flex items-center gap-2">
-              <Shield className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Web Sandbox Mode (Render / Cloud Deployment)</span>
+              <Shield className="w-4 h-4 text-cyan-400" />
+              <span>
+                <strong>Cloud Web Rejimi:</strong> Google va boshqa yirik saytlar xavfsizlik (X-Frame-Options) tufayli veb-iframe ichida ochilishini cheklaydi.
+              </span>
             </div>
-            <a
-              href={tab.url}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 text-accent hover:underline text-[11px]"
-            >
-              Open in Native Window <ExternalLink className="w-3 h-3" />
-            </a>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => navigateActiveTab('boss://newtab')}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-accent text-white text-[11px] font-semibold hover:brightness-110 shadow-sm transition-all"
+              >
+                <Home className="w-3.5 h-3.5" />
+                <span>Boss New Tab'ga qaytish</span>
+              </button>
+              <a
+                href={tab.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-3 py-1 rounded-lg bg-white/10 hover:bg-white/15 text-gray-200 text-[11px] font-medium transition-colors"
+              >
+                <span>To'g'ridan-to'g'ri ochish</span>
+                <ExternalLink className="w-3 h-3 text-cyan-300" />
+              </a>
+            </div>
           </div>
+
           <iframe
             src={tab.url}
             title={tab.title}
