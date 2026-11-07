@@ -53,3 +53,4 @@ export const BookmarkBar: React.FC = () => {
     </div>
   );
 };
+

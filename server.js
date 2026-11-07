@@ -62,3 +62,4 @@ server.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 BOSS BROWSER Web Server is live on port ${PORT}`);
   console.log(`🌐 Accessible locally at: http://localhost:${PORT}`);
 });
+

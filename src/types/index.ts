@@ -100,3 +100,4 @@ export interface QuickShortcut {
   icon: string;
   color?: string;
 }
+

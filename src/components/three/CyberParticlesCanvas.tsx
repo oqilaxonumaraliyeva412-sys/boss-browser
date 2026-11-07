@@ -210,3 +210,4 @@ export const CyberParticlesCanvas: React.FC<CyberParticlesCanvasProps> = ({
     />
   );
 };
+

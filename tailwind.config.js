@@ -14,7 +14,7 @@ export default {
           card: '#141824',
           hover: '#1E2333',
           border: 'rgba(255, 255, 255, 0.08)',
-          'border-active': 'rgba(139, 92, 246, 0.5)',
+          'border-active': 'rgba(20, 18, 26, 0.5)',
           muted: '#8E9BB0',
           text: '#F3F4F6'
         },

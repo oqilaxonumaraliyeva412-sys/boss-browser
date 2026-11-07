@@ -1,6 +1,8 @@
 import { app, BrowserWindow, ipcMain, shell, session } from 'electron';
 import * as path from 'path';
 
+app.name = 'boss-browser';
+
 let mainWindow: BrowserWindow | null = null;
 
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
@@ -115,28 +117,16 @@ ipcMain.handle('native-open-external', async (_, url: string) => {
   await shell.openExternal(url);
 });
 
-// Single instance lock
-const gotTheLock = app.requestSingleInstanceLock();
-if (!gotTheLock) {
-  app.quit();
-} else {
-  app.on('second-instance', () => {
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) mainWindow.restore();
-      mainWindow.focus();
+// Initialize window on app ready
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
     }
   });
-
-  app.whenReady().then(() => {
-    createWindow();
-
-    app.on('activate', () => {
-      if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow();
-      }
-    });
-  });
-}
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

@@ -178,3 +178,4 @@ export const NavigationBar: React.FC = () => {
     </nav>
   );
 };
+

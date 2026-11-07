@@ -100,3 +100,4 @@ BOSS BROWSER includes an integrated web server (`server.js`) that allows running
 | `Ctrl + Space` | Toggle BOSS AI Sidebar |
 | `Alt + Left / Right` | Navigate Back / Forward |
 | `Alt + Home` | Return to Boss New Tab Page |
+

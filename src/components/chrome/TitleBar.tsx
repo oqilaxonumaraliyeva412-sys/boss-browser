@@ -115,3 +115,4 @@ export const TitleBar: React.FC = () => {
     </header>
   );
 };
+

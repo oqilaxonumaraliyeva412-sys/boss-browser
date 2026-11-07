@@ -206,3 +206,4 @@ export const HistoryView: React.FC = () => {
     </div>
   );
 };
+

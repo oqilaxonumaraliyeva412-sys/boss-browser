@@ -3,8 +3,10 @@ services:
     name: boss-browser
     env: node
     plan: free
-    buildCommand: ELECTRON_SKIP_BINARY_DOWNLOAD=1 npm install && npm run build:vite
+    buildCommand: npm install --omit=optional && npm run build:vite
     startCommand: node server.js
     envVars:
       - key: ELECTRON_SKIP_BINARY_DOWNLOAD
         value: "1"
+      - key: NODE_ENV
+        value: production

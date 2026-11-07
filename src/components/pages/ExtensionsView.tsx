@@ -186,3 +186,4 @@ export const ExtensionsView: React.FC = () => {
     </div>
   );
 };
+

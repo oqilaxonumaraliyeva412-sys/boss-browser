@@ -350,3 +350,4 @@ export const BookmarksView: React.FC = () => {
     </div>
   );
 };
+

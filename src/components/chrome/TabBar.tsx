@@ -200,3 +200,4 @@ export const TabBar: React.FC = () => {
     </div>
   );
 };
+

@@ -163,3 +163,4 @@ export function setStorage<T>(key: string, value: T): void {
     console.warn(`Error writing localStorage for key ${key}:`, err);
   }
 }
+
